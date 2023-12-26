@@ -1,8 +1,6 @@
 package main;
 
-import entities.GestionnaireUtilisateurs;
-import entities.Utilisateurs;
-
+import entities.*;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -10,13 +8,17 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner =  new Scanner(System.in);
+        Utilisateurs u = new Utilisateurs();
+        GestionnaireUtilisateurs gu = new GestionnaireUtilisateurs();
+
         String url = "jdbc:mysql://127.0.0.1:3306/login_schema";
         String utilisateur = "root";
         String motDePasse = "Passer123@";
-        Utilisateurs u = new Utilisateurs();
-        GestionnaireUtilisateurs g = new GestionnaireUtilisateurs();
+
+
         boolean ok = true;
         int choix;
+
         try{
             Connection connection = DriverManager.getConnection(url, utilisateur, motDePasse);
 
@@ -29,10 +31,10 @@ public class Main {
                 }while(choix<1 || choix > 4);
                 switch(choix){
                    case 1:
-                       g.ajouterUtilisateur( connection, u.saisieUtilisateur());
+                       gu.ajouterUtilisateur( connection, u.saisieUtilisateur());
                        break;
                    case 2:
-                       System.out.println(g.listerUtilisateurs( connection));
+                       System.out.println(gu.listerUtilisateurs( connection));
                        break;
                     case 3:
                         ok=false;

@@ -8,10 +8,11 @@ public class Utilisateurs {
     Scanner scanner = new Scanner(System.in);
     private String nom;
     private String prenom;
-    private String tel;
     private String email;
     private String motdepasse;
     private String motdepasse_crypte;
+    private int idrole;
+
 
     //GETTERS
     public String getNom() {
@@ -20,10 +21,6 @@ public class Utilisateurs {
 
     public String getPrenom() {
         return prenom;
-    }
-
-    public String getTel() {
-        return tel;
     }
 
     public String getEmail() {
@@ -37,6 +34,10 @@ public class Utilisateurs {
     public String getMotdepasse_crypte() {
         return motdepasse_crypte;
     }
+    public int getIdrole() {
+        return idrole;
+    }
+
 
     //SETTERS
     public void setNom(String nom) {
@@ -45,10 +46,6 @@ public class Utilisateurs {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
     }
 
     public void setEmail(String email) {
@@ -62,19 +59,23 @@ public class Utilisateurs {
     public void setMotdepasse_crypte(String motdepasse_crypte) {
         this.motdepasse_crypte = motdepasse_crypte;
     }
+    public void setIdrole(int idrole) {
+        this.idrole = idrole;
+    }
 
 
     //CONSTRUCTORS
     public Utilisateurs() {
     }
 
-    public Utilisateurs(String nom, String prenom, String tel, String email, String motdepasse, String motdepasse_crypte) {
+    public Utilisateurs(String nom, String prenom, String email, String motdepasse, String motdepasse_crypte, int idrole) {
         this.nom = nom;
         this.prenom = prenom;
-        this.tel = tel;
         this.email = email;
         this.motdepasse = motdepasse;
         this.motdepasse_crypte = motdepasse;
+        this.idrole = idrole;
+
     }
 
     //FONCTIONS
@@ -85,10 +86,6 @@ public class Utilisateurs {
         u.setNom(scanner.nextLine());
         System.out.println("Prenom:");
         u.setPrenom(scanner.nextLine());
-        do {
-            System.out.println("Tel:");
-            u.setTel(scanner.nextLine());
-        } while (u.getTel().length() != 9);
 
         do {
             System.out.println("Email:");
@@ -102,10 +99,19 @@ public class Utilisateurs {
 
         u.setMotdepasse_crypte(hashPassword(u.getMotdepasse()));
 
+        do {
+            System.out.println("1-ADMINISTRATEUR");
+            System.out.println("2-SUPER_UTILISATEUR");
+            System.out.println("3-UTILISATEUR");
+            System.out.println("Chosissez le role");
+            u.setIdrole(scanner.nextInt());
+        } while (u.getIdrole()<1 || u.getIdrole() > 3);
+        scanner.nextLine();
+
         return u;
     }
 
-    /*Methode peu efficace
+    /*Methode peu efficace contre la force brute
     public StringBuilder crypte(String motdepasse){
         int key = 3;
         StringBuilder crypte = new StringBuilder();

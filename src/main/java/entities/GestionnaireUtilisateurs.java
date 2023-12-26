@@ -9,18 +9,18 @@ public class GestionnaireUtilisateurs {
     public static void ajouterUtilisateur(Connection connection, Utilisateurs u) {
         // Requête SQL d'insertion
 
-
-        String sql = "INSERT INTO utilisateurs (nom, prenom, tel, email, motdepasse, motdepasse_crypte) " +
+        String sql = "INSERT INTO utilisateurs (nom, prenom, email, motdepasse, motdepasse_crypte, idroles) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             // Paramétrage des valeurs
             preparedStatement.setString(1, u.getNom());
             preparedStatement.setString(2, u.getPrenom());
-            preparedStatement.setString(3, u.getTel());
-            preparedStatement.setString(4, u.getEmail());
-            preparedStatement.setString(5, u.getMotdepasse());
-            preparedStatement.setString(6, u.getMotdepasse_crypte());
+            preparedStatement.setString(3, u.getEmail());
+            preparedStatement.setString(4, u.getMotdepasse());
+            preparedStatement.setString(5, u.getMotdepasse_crypte());
+            preparedStatement.setInt(6, u.getIdrole());
+
 
             // Exécution de la requête
             int lignesModifiees = preparedStatement.executeUpdate();
@@ -51,17 +51,18 @@ public class GestionnaireUtilisateurs {
             while (resultSet.next()) {
                 String nom = resultSet.getString("nom"); //On peut mettre le des nombre pour preciser la colonne
                 String prenom = resultSet.getString("prenom");
-                String tel = resultSet.getString("tel");
                 String email = resultSet.getString("email");
                 String motdepasse = resultSet.getString("motdepasse");
                 String motdepasse_crypte = resultSet.getString("motdepasse_crypte");
+                int idroles = resultSet.getInt("idroles");
 
                 result.append("Nom: ").append(nom).append(", ");
                 result.append("Prénom: ").append(prenom).append(", ");
-                result.append("Téléphone: ").append(tel).append(", ");
                 result.append("Email: ").append(email).append(", ");
                 result.append("Mot de passe: ").append(motdepasse).append(", ");
-                result.append("Mot de passe crypté: ").append(motdepasse_crypte).append("\n");
+                result.append("Mot de passe crypté: ").append(motdepasse_crypte).append(", ");
+                result.append("Idroles: ").append(motdepasse_crypte).append("\n");
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
