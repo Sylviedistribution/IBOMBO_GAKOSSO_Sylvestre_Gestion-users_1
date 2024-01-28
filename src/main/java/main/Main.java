@@ -25,7 +25,7 @@ public class Main {
         try {
             Connection connection = DriverManager.getConnection(url, utilisateur, motDePasse);
 
-            logger.info("Vous etes connectes");
+            logger.info("Vous etes connectes maintenant.");
 
             do {
                 do {
