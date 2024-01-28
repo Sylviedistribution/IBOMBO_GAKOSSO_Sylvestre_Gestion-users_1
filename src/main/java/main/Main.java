@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main1.class);
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
