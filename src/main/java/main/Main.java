@@ -47,8 +47,6 @@ public class Main {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        logger.info("Fin ");
-
     }
 
     private static void afficherMenu() {
