@@ -6,7 +6,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Main1 {
+public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main1.class);
 
