@@ -54,7 +54,7 @@ public class Main {
         logger.info("1-Ajouter un utilisateur");
         logger.info("2-Lister les utilisateurs");
         logger.info("3-Quitter");
-        logger.info("Faites votre choix m: ");
+        logger.info("Faites votre choix: ");
     }
 
 }
