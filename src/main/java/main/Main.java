@@ -55,6 +55,6 @@ public class Main {
         logger.info("2-Lister les utilisateurs");
         logger.info("3-Quitter");
         logger.info("Faites votre choix ici: ");
-    
+    }
 
 }
